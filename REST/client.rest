@@ -1,0 +1,57 @@
+### buscar todos os IDs
+GET http://localhost:3000/user/
+
+### buscar extrato pelo ID
+GET http://localhost:3000/user/82a03a9e-fb73-4450-b4b6-171fb2717ed1
+
+### inserir user
+POST http://localhost:3000/user/
+content-type: application/json
+
+{
+    "name": "tiago",
+    "saldo": 0,
+    "transicao": [{}]
+}
+
+### add deposito
+PUT  http://localhost:3000/user/deposito/943de695-889f-4deb-8f60-0013347ce1a5
+content-type: application/json
+
+{
+    "name": "tiago",
+    "saldo": 0,
+    "transicao": [{
+      "tipo": "deposito",
+      "valor": 100
+    }]
+}
+
+### add retirada
+PUT  http://localhost:3000/user/retirada/943de695-889f-4deb-8f60-0013347ce1a5
+content-type: application/json
+
+{
+    "name": "tiago",
+    "saldo": 100,
+    "transicao": [{
+      "tipo": "retirada",
+      "valor": 100
+    }]
+}
+
+### deletar user
+delete http://localhost:3000/user/943de695-889f-4deb-8f60-0013347ce1a5
+
+### Atualizar um usuario pelo ID
+PUT  http://localhost:3000/user/943de695-889f-4deb-8f60-0013347ce1a5
+content-type: application/json
+
+{
+    "name": "tiago",
+    "saldo": 50,
+    "transicao": [{}]
+}
+
+### buscar Ids pela rota USER
+GET http://localhost:3000/user/
