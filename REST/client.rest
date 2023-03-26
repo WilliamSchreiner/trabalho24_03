@@ -1,7 +1,7 @@
 ### buscar todos os IDs
 GET http://localhost:3000/user/
 
-### buscar saldo  e extrato pelo ID  c
+### buscar saldo  e extrato pelo ID
 GET http://localhost:3000/user/67fada53-9386-4cb8-8065-47721005104a
 
 ### inserir user
@@ -10,16 +10,18 @@ content-type: application/json
 
 {
     "name": "tiago",
+    "End": "xxx",
+    "CEP": "xxx",
+    "CPF": "xxx",
     "saldo": 0,
     "transicao": []
 }
 
 ### add deposito
-PUT  http://localhost:3000/user/deposito/67fada53-9386-4cb8-8065-47721005104a
+PUT  http://localhost:3000/user/deposito/1acd3cbb-6e42-452f-87e3-bccb1f562382
 content-type: application/json
 
 {
-    "name": "tiago",
     "transicao": [{
       "tipo": "deposito",
       "valor": 100
@@ -31,7 +33,6 @@ PUT  http://localhost:3000/user/retirada/67fada53-9386-4cb8-8065-47721005104a
 content-type: application/json
 
 {
-    "name": "tiago",
     "transicao": [{
       "tipo": "retirada",
       "valor": 100
@@ -47,8 +48,9 @@ content-type: application/json
 
 {
     "name": "tiago",
-    "saldo": 50,
-    "transicao": [{}]
+    "End": "xxx",
+    "CEP": "xxx",
+    "CPF": "xxx",
 }
 
 ### buscar Ids pela rota USER
