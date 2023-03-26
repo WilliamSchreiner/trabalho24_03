@@ -1,8 +1,8 @@
 ### buscar todos os IDs
 GET http://localhost:3000/user/
 
-### buscar saldo pelo ID
-GET http://localhost:3000/user/e49a41da-546c-4e74-bc5d-190f35c47ebc
+### buscar saldo  e extrato pelo ID
+GET http://localhost:3000/user/67fada53-9386-4cb8-8065-47721005104a
 
 ### inserir user
 POST http://localhost:3000/user/
@@ -11,11 +11,11 @@ content-type: application/json
 {
     "name": "tiago",
     "saldo": 0,
-    "transicao": [{}]
+    "transicao": []
 }
 
 ### add deposito
-PUT  http://localhost:3000/user/deposito/e49a41da-546c-4e74-bc5d-190f35c47ebc
+PUT  http://localhost:3000/user/deposito/67fada53-9386-4cb8-8065-47721005104a
 content-type: application/json
 
 {
@@ -27,7 +27,7 @@ content-type: application/json
 }
 
 ### add retirada
-PUT  http://localhost:3000/user/retirada/943de695-889f-4deb-8f60-0013347ce1a5
+PUT  http://localhost:3000/user/retirada/67fada53-9386-4cb8-8065-47721005104a
 content-type: application/json
 
 {
