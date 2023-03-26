@@ -1,7 +1,7 @@
 ### buscar todos os IDs
 GET http://localhost:3000/user/
 
-### buscar saldo  e extrato pelo ID
+### buscar saldo  e extrato pelo ID  c
 GET http://localhost:3000/user/67fada53-9386-4cb8-8065-47721005104a
 
 ### inserir user
