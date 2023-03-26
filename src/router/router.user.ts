@@ -24,7 +24,7 @@ userRoute.get('/:id', (request, response) => {
 
  if(result === undefined) response.status(400).json({msg:'Usuarios nao encontrado'})
 
-  response.json()
+  response.json(result)
 })
 
 //metodo de add user
