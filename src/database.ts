@@ -4,27 +4,22 @@ const databasePath = new URL('../db.json', import.meta.url)
 
 
 export class Database {
-  #database:any = [];
+  #database: any = {};
 
-
-  constructor(){
-    fs.readFile(databasePath, 'utf8')
-    .then(data => {
-      this.#database = JSON.parse(data)
-    }).catch(() => {
-      fs.writeFile(databasePath, JSON.stringify({}, null, 2))
-    })
-
+  constructor() {
+    fs.readFile(databasePath, "utf8")
+      .then((data) => {
+        this.#database = JSON.parse(data);
+      })
+      .catch(() => {
+        this.#persist();
+      });
   }
 
-  //catch = quando a promesa nao é comprida ele trata com outro callback
-  //parse = converte o objeto escrito para objeto
-  //Stringing = converte o objeto  para objeto escrito
-
-  #persist(){
-
-    fs.writeFile(databasePath, JSON.stringify(this.#database, null, 2))
+  #persist() {
+    fs.writeFile(databasePath, JSON.stringify(this.#database, null, 2));
   }
+
 
   select(table: any, id?: string): object {
     let data = this.#database[table] ?? []
@@ -52,29 +47,26 @@ export class Database {
   }
 
 
-  delete(table:any, id:string): void{
+  delete(table: string, id: string) {
+    const rowIndex = this.#database[table].findIndex(
+      (row: any) => row.id === id
+    );
 
-
-    //procura de id
-    const rowIndex  = this.#database[table].findIndex((row:any) => row.id === id)
-
-    //validando o id e delete
-    if(rowIndex > -1){
-      this.#database[table].slice(rowIndex, 1);
+    if (rowIndex > -1) {
+      this.#database[table].splice(rowIndex, 1);
       this.#persist();
-
     }
   }
 
 
-  update(table:any, id:string, data:object): void{
+  update(table: string, id: string, data: object) {
+    const rowIndex = this.#database[table].findIndex(
+      (row: any) => row.id === id
+    );
 
-    const rowIndex = this.#database[table].findIndex((row:any)=> row.id === id);
-
-    if(rowIndex > -1) {
-      this.#database[table][rowIndex] = data
-      // ... = desconstruir um objeto
-      this.#persist()
+    if (rowIndex > -1) {
+      this.#database[table][rowIndex] = { id, ...data };
+      this.#persist();
     }
 
   }
