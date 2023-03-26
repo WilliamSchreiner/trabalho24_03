@@ -29,11 +29,14 @@ userRoute.get('/:id', (request, response) => {
 
 //metodo de add user
 userRoute.post('/', (request, response ) => {
-const {name, saldo ,transicao} = request.body;
+const {name,End, CPF, CEP,  saldo, transicao} = request.body;
 
 const user = {
   id: randomUUID(),
   name,
+  End,
+  CPF,
+  CEP,
   saldo,
   transicao
   // ou name: name, email: email
