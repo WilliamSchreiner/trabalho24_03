@@ -2,7 +2,7 @@
 GET http://localhost:3000/user/
 
 ### buscar saldo  e extrato pelo ID
-GET http://localhost:3000/user/67fada53-9386-4cb8-8065-47721005104a
+GET http://localhost:3000/user/7445407d-933f-46fb-a012-4a9a13381d8d
 
 ### inserir user
 POST http://localhost:3000/user/
@@ -14,43 +14,45 @@ content-type: application/json
     "CEP": "xxx",
     "CPF": "xxx",
     "saldo": 0,
-    "transicao": []
+    "transacao": []
 }
 
 ### add deposito
-PUT  http://localhost:3000/user/deposito/1acd3cbb-6e42-452f-87e3-bccb1f562382
+PUT  http://localhost:3000/user/deposito/7445407d-933f-46fb-a012-4a9a13381d8d
 content-type: application/json
 
 {
-    "transicao": [{
+    "transacao": [{
       "tipo": "deposito",
       "valor": 100
     }]
 }
 
 ### add retirada
-PUT  http://localhost:3000/user/retirada/67fada53-9386-4cb8-8065-47721005104a
+PUT  http://localhost:3000/user/retirada/7445407d-933f-46fb-a012-4a9a13381d8d
 content-type: application/json
 
 {
-    "transicao": [{
+    "transacao": [{
       "tipo": "retirada",
       "valor": 100
     }]
 }
 
 ### deletar user
-delete http://localhost:3000/user/943de695-889f-4deb-8f60-0013347ce1a5
+delete http://localhost:3000/user/7445407d-933f-46fb-a012-4a9a13381d8d
 
 ### Atualizar um usuario pelo ID
-PUT  http://localhost:3000/user/943de695-889f-4deb-8f60-0013347ce1a5
+PUT  http://localhost:3000/user/7445407d-933f-46fb-a012-4a9a13381d8d
 content-type: application/json
 
 {
-    "name": "tiago",
+    "name": "matheus",
     "End": "xxx",
     "CEP": "xxx",
     "CPF": "xxx",
+    "saldo": 0,
+    "transacao" []
 }
 
 ### buscar Ids pela rota USER

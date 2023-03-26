@@ -29,7 +29,7 @@ userRoute.get('/:id', (request, response) => {
 
 //metodo de add user
 userRoute.post('/', (request, response ) => {
-const {name,End, CPF, CEP,  saldo, transicao} = request.body;
+const {name,End, CPF, CEP,  saldo, transacao} = request.body;
 
 const user = {
   id: randomUUID(),
@@ -38,14 +38,14 @@ const user = {
   CPF,
   CEP,
   saldo,
-  transicao
+  transacao
   // ou name: name, email: email
   //isso só em versões antigas
   };
 
   database.insert(table, user);
 
-response.status(201).send({msg:'ok'});
+response.status(201).send({msg:'conta cadastrada com sucesso.'});
 });
 
 //metodo de deletar pelo ID
@@ -68,28 +68,28 @@ userRoute.delete('/:id', (request, response) => {
 
 //metodo de editar o user
 userRoute.put('/:id', (request,response)=>{
-
   const {id} = request.params
-  const {name, saldo, transicao} = request.body
-
+  const {name, End, CPF, CEP, saldo, transacao} = request.body
   const userExist:any = database.select(table, id);
 
   if(userExist === undefined)
   return response.status(400).json(
     {msg:'Usuario nao encontrado'});
 
-    database.update(table, id, {id, name, saldo, transicao})
+    //user encontrado
 
-    response.status(201).json(
-      {msg: `Usuario ${userExist.name} foi atualizado` });
 
+    database.update(table, id, {id, name, End, CPF, CEP,  saldo, transacao})
+
+    response.status(202).json(
+      {msg: `Usuario ${userExist.name} deletado` });
 })
 
 //metodo de retirada pelo ID
 userRoute.put('/retirada/:id', (request,response)=>{
 
   const {id} = request.params
-  const {name, transicao: [{ tipo, valor}]} = request.body
+  const {transacao: [{ tipo, valor}]} = request.body
 
   const userExist:any = database.select(table, id);
 
@@ -100,14 +100,15 @@ userRoute.put('/retirada/:id', (request,response)=>{
 
     // user encontrado
 
-    let transicao = userExist.transicao
-    transicao.push({tipo, valor})
-    console.log(transicao)
+    const name = userExist.name;
+
+    let transacao = userExist.transacao
+    transacao.push({tipo, valor})
     let saldo = userExist.saldo
-    database.update(table, id, {id, name, saldo: saldo - valor, transicao})
+    database.update(table, id, {id, name, saldo: saldo - valor, transacao})
 
     response.status(201).json(
-      {msg: ` Foi retidado o valor de  ${valor}` });
+      {msg: ` Foi retidado o valor de  ${valor} na conta ${name}` });
 
 })
 
@@ -115,7 +116,7 @@ userRoute.put('/retirada/:id', (request,response)=>{
 userRoute.put('/deposito/:id', (request,response)=>{
 
   const {id} = request.params
-  const {name, transicao: [{ tipo, valor}]} = request.body
+  const {transacao: [{ tipo, valor}]} = request.body
 
   const userExist:any = database.select(table, id);
 
@@ -126,14 +127,14 @@ userRoute.put('/deposito/:id', (request,response)=>{
 
     // user encontrado
 
-    let transicao = userExist.transicao
-    transicao.push({tipo, valor})
-    console.log(transicao)
+    const name = userExist.name;
+    let transacao = userExist.transacao
+    transacao.push({tipo, valor})
     let saldo = userExist.saldo
-    database.update(table, id, {id, name, saldo: saldo + valor, transicao})
+    database.update(table, id, {id, name, saldo: saldo + valor, transacao})
 
     response.status(201).json(
-      {msg: ` Foi depositado o valor de  ${valor}` });
+      {msg: ` Foi depositado o valor de  ${valor} na conta ${name}` });
 
 })
 
