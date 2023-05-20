@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { Database } from '../database';
 import { randomUUID } from 'node:crypto';
+import { Database } from '../database';
 
 const userRoute = Router();
 
@@ -39,11 +39,10 @@ const user = {
   CEP,
   saldo,
   transacao
-  // ou name: name, email: email
-  //isso só em versões antigas
   };
+  console.log(`--> recebeu\n ${JSON.stringify(user, null ,2)}`)
 
-  database.insert(table, user);
+  // database.insert(table, user);
 
 response.status(201).send({msg:'conta cadastrada com sucesso.'});
 });
@@ -143,4 +142,4 @@ userRoute.get('/', (request, response)=>{
   response.send(`Rota userRote ON.`)
 })
 
-export {userRoute}
+export { userRoute };

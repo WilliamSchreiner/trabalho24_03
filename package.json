@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "tsx watch ./src/server.ts",
-"test": "tsx ./src/test/test.01.ts"
+    "test": "tsx ./src/test/test.01.ts"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +17,8 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {
+    "@types/cors": "^2.8.13",
+    "cors": "^2.8.5",
     "express": "^4.18.2"
   }
 }
